@@ -1,4 +1,4 @@
-name: 'ci'
+name: 'Unit Tests'
 on:
   push:
     branches-ignore:
@@ -18,8 +18,13 @@ jobs:
           node-version: 18
       - name: Install dependencies
         run: npm install
-      - name: Test
-        run: npm test -- --url https://cweili.github.io/md-viewer/
+      - name: Install Playwright
+        run: npx playwright install --with-deps
+      - name: Serve Storybook and run tests
+        run: |
+          npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
+            "npm run dev -- --silent" \
+            "npx wait-on tcp:6006 && npm test"
       - name: Coverage
         run: npm run coverage
       - name: Coveralls
