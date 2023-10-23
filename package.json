@@ -2,6 +2,19 @@
   "name": "md-viewer",
   "version": "0.0.1",
   "description": "View markdown with code highlighting, katex, mermaid",
+  "keywords": [
+    "markdown",
+    "highlight",
+    "highlighting",
+    "latex",
+    "marked",
+    "katex",
+    "mermaid",
+    "react",
+    "web",
+    "worker",
+    "webworker"
+  ],
   "scripts": {
     "build": "vite build",
     "test": "test-storybook --coverage --coverageDirectory=coverage",
@@ -9,7 +22,8 @@
     "dev": "storybook dev --docs --disable-telemetry -p 6006",
     "build:docs": "storybook build --docs --disable-telemetry -o dist/docs"
   },
-  "author": "Cweili<3weili@gmail.com>",
+  "author": "Cweili",
+  "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "files": [

@@ -106,8 +106,8 @@ const defaultOptions = {
 [badge-issues]: https://img.shields.io/github/issues/Cweili/md-viewer.svg
 [github]: https://github.com/Cweili/md-viewer
 
-[badge-build]: https://img.shields.io/github/actions/workflow/status/Cweili/md-viewer/ci.yml?branch=master
-[workflows]: https://github.com/Cweili/md-viewer/actions/workflows/ci.yml?query=branch%3Amaster
+[badge-build]: https://img.shields.io/github/actions/workflow/status/Cweili/md-viewer/test.yml?branch=master
+[workflows]: https://github.com/Cweili/md-viewer/actions/workflows/test.yml?query=branch%3Amaster
 
 [badge-coverage]: https://img.shields.io/coveralls/github/Cweili/md-viewer/master.svg
 [coveralls]: https://coveralls.io/github/Cweili/md-viewer?branch=master
