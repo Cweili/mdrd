@@ -23,7 +23,7 @@ jobs:
       - name: Serve Storybook and run tests
         run: |
           npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
-            "npm run dev -- --silent" \
+            "npm run dev" \
             "npx wait-on tcp:6006 && npm test"
       - name: Coverage
         run: npm run coverage
