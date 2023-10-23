@@ -68,14 +68,14 @@ function ReactComponent() {
 
 #### Options
 
-`katex`: [Katex options](https://katex.org/docs/options)
-`marked`: [Marked options](https://marked.js.org/using_advanced#options)
-`cdn`: CDN options
+* `katex`: [Katex options](https://katex.org/docs/options)
+* `marked`: [Marked options](https://marked.js.org/using_advanced#options)
+* `cdn`: CDN options
 
 Default options:
 
 ```js
-const libsMinVersion = process.env.NODE_ENV === 'development' ? '' : '.min'
+const libsMinVersion = process .env .NODE_ENV === 'development' ? '' : '.min'
 const defaultOptions = {
   katex: {},
   marked: {},
