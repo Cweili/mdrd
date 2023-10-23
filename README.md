@@ -13,9 +13,9 @@
 View markdown with code highlighting, katex, mermaid.
 
 * Rendering markdown in WebWorkers
-* Dynamically load required libraries from CDN
+* Automatically load libraries used from CDN dynamically
 * Code highlighting, katex, mermaid included
-* React supported
+* React component supported
 
 [Documents and examples][doc].
 
@@ -27,7 +27,7 @@ npm install md-viewer
 
 ## Usage
 
-Markdown renderer
+#### Markdown renderer
 
 ```js
 import { markdown } from 'md-viewer'
@@ -36,12 +36,12 @@ const markdownOptions = {
   katex: {},
   marked: {},
   cdn: {
-    prefix: 'https://cdnjs.cloudflare.com/ajax/libs/',
+    prefix: 'https://cdn.jsdelivr.net/npm/',
     libs: {
-      marked: `marked/9.1.2/lib/marked.umd.min.js`,
-      prism: `prism/1.29.0/components/prism-core.min.js`,
-      katex: `KaTeX/0.16.9/katex.min.js`,
-      mermaid: `mermaid/10.5.0/mermaid.min.js`,
+      marked: `marked@9.1.2/lib/marked.umd.min.js`,
+      prismjs: `prismjs@1.29.0/components/prism-core.min.js`,
+      katex: `katex@0.16.9/dist/katex.min.js`,
+      mermaid: `mermaid@10.5.1/dist/mermaid.min.js`,
     },
   },
 }
@@ -51,12 +51,13 @@ const html = await renderMarkdown(content)
 const htmlWithMermaid = await renderMarkdown.mermaid(content, html)
 ```
 
-React component
+#### React component
 
 ```jsx
 import { MdViewer } from 'md-viewer'
 
 function ReactComponent() {
+  const markdownOptions = {}
   return (
     <MdViewer options={markdownOptions}>
       # hello world
@@ -65,6 +66,30 @@ function ReactComponent() {
 }
 ```
 
+#### Options
+
+`katex`: [Katex options](https://katex.org/docs/options)
+`marked`: [Marked options](https://marked.js.org/using_advanced#options)
+`cdn`: CDN options
+
+Default options:
+
+```js
+const libsMinVersion = process.env.NODE_ENV === 'development' ? '' : '.min'
+const defaultOptions = {
+  katex: {},
+  marked: {},
+  cdn: {
+    prefix: 'https://cdn.jsdelivr.net/npm/',
+    libs: {
+      marked: `marked@9.1.2/lib/marked.umd${libsMinVersion}.js`,
+      prismjs: `prismjs@1.29.0/components/prism-core${libsMinVersion}.js`,
+      katex: `katex@0.16.9/dist/katex${libsMinVersion}.js`,
+      mermaid: `mermaid@10.5.1/dist/mermaid${libsMinVersion}.js`,
+    },
+  },
+}
+```
 
 [doc]: https://cweili.github.io/md-viewer/
 
