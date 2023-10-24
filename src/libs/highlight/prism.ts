@@ -13,20 +13,22 @@ import {
 import loadLanguageComponent from './language'
 
 const context: { Prism?: Partial<typeof Prism> } = self
+let prismInstance: typeof Prism
 export default function prismjs(options: MarkdownOptions) {
   const loadComponent = (component: string) => (
-    loadScript(options.cdn!.libs!.prismjs!.replace('prism-core', `prism-${component}`), options.cdn!.prefix, context)
+    loadScript(options.cdn!.libs!.prismjs!.replace('prism-core', `prism-${component}`), options.cdn!.prefix!, context)
   )
 
   async function getPrism() {
-    if (!context.Prism) {
+    if (!prismInstance) {
       context.Prism = {
         manual: true,
         disableWorkerMessageHandler: true,
       }
       await loadComponent('core')
+      prismInstance = context.Prism as typeof Prism
     }
-    return context.Prism
+    return prismInstance
   }
 
   return markedHighlight({
@@ -35,7 +37,7 @@ export default function prismjs(options: MarkdownOptions) {
       const prism = await getPrism()
       const lang = language || 'txt'
       await loadLanguageComponent(prism, lang, loadComponent)
-      return prism.highlight!(code, prism.languages![lang], lang)
+      return prism.highlight(code, prism.languages![lang], lang)
     },
   })
 }

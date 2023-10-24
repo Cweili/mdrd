@@ -14,7 +14,7 @@ import type {
 let marked: Marked
 async function getMarked(options: MarkdownOptions) {
   if (!marked) {
-    await loadScript(options.cdn!.libs!.marked, options.cdn!.prefix)
+    await loadScript(options.cdn!.libs!.marked!, options.cdn!.prefix!)
     // @ts-ignore
     marked = new self.marked.Marked(options.marked)
     marked.use(highlight(options))

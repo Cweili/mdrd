@@ -8,4 +8,6 @@ export const loadScript = cache(async (url: string, prefix: string, context = se
   const text = await resp.text()
   // eslint-disable-next-line no-new-func
   return (new Function('globalThis', 'self', text))(context, context)
-}, 60000)
+}, 60000, {
+  key: (url: string, prefix?: string) => (prefix + url),
+})
