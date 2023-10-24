@@ -19,7 +19,7 @@ const defaultOptions = {
   },
 }
 
-export function markdown(options: MarkdownOptions = defaultOptions) {
+export default function markdown(options: MarkdownOptions = defaultOptions) {
   const opts = {
     ...defaultOptions,
     ...options,

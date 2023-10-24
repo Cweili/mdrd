@@ -38,10 +38,10 @@ const markdownOptions = {
   cdn: {
     prefix: 'https://cdn.jsdelivr.net/npm/',
     libs: {
-      marked: `marked@9.1.2/lib/marked.umd.min.js`,
-      prismjs: `prismjs@1.29.0/components/prism-core.min.js`,
-      katex: `katex@0.16.9/dist/katex.min.js`,
-      mermaid: `mermaid@10.5.1/dist/mermaid.min.js`,
+      marked: 'marked@9.1.2/lib/marked.umd.min.js',
+      prismjs: 'prismjs@1.29.0/components/prism-core.min.js',
+      katex: 'katex@0.16.9/dist/katex.min.js',
+      mermaid: 'mermaid@10.5.1/dist/mermaid.min.js',
     },
   },
 }

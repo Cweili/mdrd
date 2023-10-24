@@ -7,8 +7,7 @@ import clipboardCopy from 'clipboard-copy'
 
 import style from './MdViewer.module.scss'
 
-import {
-  markdown,
+import markdown, {
   MarkdownOptions,
 } from '../../libs'
 
@@ -19,12 +18,12 @@ export interface MdViewerProps {
   options?: MarkdownOptions
 }
 
-export function MdViewer({
+export default function MdViewer({
   children,
   options,
 }: MdViewerProps) {
   const [html, setHtml] = useState<string>()
-  const render = useMemo(() => markdown(options), [options])
+  const render = useMemo(() => markdown(options), [JSON.stringify(options)])
 
   const onCopy = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const target = e.target as HTMLElement
@@ -43,7 +42,7 @@ export function MdViewer({
   useEffect(() => {
     if (children) {
       render(children)
-        .then((newHtml) => render.mermaid(children, newHtml))
+        .then((newHtml: string) => render.mermaid(children, newHtml))
         .then(setHtml)
     }
   }, [children])
