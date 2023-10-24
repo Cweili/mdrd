@@ -1,7 +1,7 @@
 import type { KatexOptions } from 'katex'
 import type { MarkedOptions } from 'marked'
 
-export interface MarkdownOptions {
+export interface MdrdOptions {
   marked?: MarkedOptions
   katex?: KatexOptions
   cdn?: {

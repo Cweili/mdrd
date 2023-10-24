@@ -5,17 +5,17 @@ import React, {
 } from 'react'
 import clipboardCopy from 'clipboard-copy'
 
-import style from './MdViewer.module.scss'
+import style from './MdView.module.scss'
 
 import markdown, {
-  MarkdownOptions,
+  MdrdOptions,
 } from '../../libs'
 
 export interface MdViewerProps {
   /** Markdown */
   children?: string
-  /** MarkdownOptions */
-  options?: MarkdownOptions
+  /** MdrdOptions */
+  options?: MdrdOptions
 }
 
 export default function MdViewer({

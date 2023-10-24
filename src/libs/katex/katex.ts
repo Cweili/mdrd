@@ -3,7 +3,7 @@ import type { TokenizerAndRendererExtension, Token } from 'marked'
 import type { KatexOptions } from 'katex'
 
 import type {
-  MarkdownOptions,
+  MdrdOptions,
 } from '../types'
 import {
   loadScript,
@@ -95,7 +95,7 @@ function blockKatex(renderer: ReturnType<typeof createRenderer>) {
   }
 }
 
-export default function katex(options: MarkdownOptions) {
+export default function katex(options: MdrdOptions) {
   return {
     extensions: [
       inlineKatex(createRenderer(options.katex)),

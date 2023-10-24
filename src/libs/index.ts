@@ -2,7 +2,7 @@
 // @ts-ignore
 import MdWorker from './worker?worker&inline'
 import mermaid from './mermaid'
-import type { MarkdownOptions } from './types'
+import type { MdrdOptions } from './types'
 
 const libsMinVersion = process.env.NODE_ENV === 'development' ? '' : '.min'
 const defaultOptions = {
@@ -19,7 +19,7 @@ const defaultOptions = {
   },
 }
 
-export default function markdown(options: MarkdownOptions = defaultOptions) {
+export default function markdown(options: MdrdOptions = defaultOptions) {
   const opts = {
     ...defaultOptions,
     ...options,
@@ -54,5 +54,5 @@ export default function markdown(options: MarkdownOptions = defaultOptions) {
 }
 
 export type {
-  MarkdownOptions,
+  MdrdOptions,
 }

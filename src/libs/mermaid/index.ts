@@ -1,7 +1,7 @@
 import type { Mermaid } from 'mermaid'
 
 import type {
-  MarkdownOptions,
+  MdrdOptions,
 } from '../types'
 
 import {
@@ -12,7 +12,7 @@ const regex = /```mermaid([\S\s]+?)```/g
 const context: {
   mermaid?: Mermaid
 } = {}
-async function getMermaid(options: MarkdownOptions) {
+async function getMermaid(options: MdrdOptions) {
   let { mermaid } = context
   if (!mermaid) {
     await loadScript(options.cdn!.libs!.mermaid, options.cdn!.prefix, context)
@@ -21,7 +21,7 @@ async function getMermaid(options: MarkdownOptions) {
   return mermaid!
 }
 
-export default function configMermaid(options: MarkdownOptions) {
+export default function configMermaid(options: MdrdOptions) {
   return async function renderMermaid(text: string, html: string) {
     const mermaids = text.match(regex)
     let result = html

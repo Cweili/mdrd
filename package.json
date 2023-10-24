@@ -1,7 +1,7 @@
 {
-  "name": "md-viewer",
+  "name": "mdrd",
   "version": "0.0.1",
-  "description": "View markdown with code highlighting, katex, mermaid",
+  "description": "Render markdown with code highlighting, katex, mermaid",
   "keywords": [
     "markdown",
     "highlight",

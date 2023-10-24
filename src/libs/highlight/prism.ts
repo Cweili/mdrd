@@ -3,7 +3,7 @@ import type Prism from 'prismjs'
 import { markedHighlight } from 'marked-highlight'
 
 import type {
-  MarkdownOptions,
+  MdrdOptions,
 } from '../types'
 import {
   loadScript,
@@ -14,7 +14,7 @@ import loadLanguageComponent from './language'
 
 const context: { Prism?: Partial<typeof Prism> } = self
 let prismInstance: typeof Prism
-export default function prismjs(options: MarkdownOptions) {
+export default function prismjs(options: MdrdOptions) {
   const loadComponent = (component: string) => (
     loadScript(options.cdn!.libs!.prismjs!.replace('prism-core', `prism-${component}`), options.cdn!.prefix!, context)
   )

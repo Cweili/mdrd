@@ -1,4 +1,4 @@
-# MdViewer
+# mdrd
 
 [![npm][badge-version]][npm]
 [![bundle size][badge-size]][bundlephobia]
@@ -10,7 +10,7 @@
 [![build][badge-build]][workflows]
 [![coverage][badge-coverage]][coveralls]
 
-View markdown with code highlighting, katex, mermaid.
+Render markdown with code highlighting, katex, mermaid.
 
 * Rendering markdown in WebWorkers
 * Automatically load libraries used from CDN dynamically
@@ -22,7 +22,7 @@ View markdown with code highlighting, katex, mermaid.
 ## Installation
 
 ```shell
-npm install md-viewer
+npm install mdrd
 ```
 
 ## Usage
@@ -30,9 +30,9 @@ npm install md-viewer
 #### Markdown renderer
 
 ```js
-import markdown from 'md-viewer'
+import mdrd from 'mdrd'
 
-const markdownOptions = {
+const mdrdOptions = {
   katex: {},
   marked: {},
   cdn: {
@@ -45,7 +45,7 @@ const markdownOptions = {
     },
   },
 }
-const renderMarkdown = markdown(markdownOptions)
+const renderMarkdown = mdrd(mdrdOptions)
 const content = '# hello world'
 const html = await renderMarkdown(content)
 const htmlWithMermaid = await renderMarkdown.mermaid(content, html)
@@ -54,14 +54,14 @@ const htmlWithMermaid = await renderMarkdown.mermaid(content, html)
 #### React component
 
 ```jsx
-import { MdViewer } from 'md-viewer'
+import { MdView } from 'mdrd'
 
 function ReactComponent() {
-  const markdownOptions = {}
+  const mdrdOptions = {}
   return (
-    <MdViewer options={markdownOptions}>
+    <MdView options={mdrdOptions}>
       # hello world
-    </MdViewer>
+    </MdView>
   )
 }
 ```
@@ -91,23 +91,23 @@ const defaultOptions = {
 }
 ```
 
-[doc]: https://cweili.github.io/md-viewer/
+[doc]: https://cweili.github.io/mdrd/
 
-[badge-version]: https://img.shields.io/npm/v/md-viewer.svg
-[badge-downloads]: https://img.shields.io/npm/dt/md-viewer.svg
-[npm]: https://www.npmjs.com/package/md-viewer
+[badge-version]: https://img.shields.io/npm/v/mdrd.svg
+[badge-downloads]: https://img.shields.io/npm/dt/mdrd.svg
+[npm]: https://www.npmjs.com/package/mdrd
 
-[badge-size]: https://img.shields.io/bundlephobia/minzip/md-viewer.svg
-[bundlephobia]: https://bundlephobia.com/result?p=md-viewer
+[badge-size]: https://img.shields.io/bundlephobia/minzip/mdrd.svg
+[bundlephobia]: https://bundlephobia.com/result?p=mdrd
 
-[badge-license]: https://img.shields.io/npm/l/md-viewer.svg
-[license]: https://github.com/Cweili/md-viewer/blob/master/LICENSE
+[badge-license]: https://img.shields.io/npm/l/mdrd.svg
+[license]: https://github.com/Cweili/mdrd/blob/master/LICENSE
 
-[badge-issues]: https://img.shields.io/github/issues/Cweili/md-viewer.svg
-[github]: https://github.com/Cweili/md-viewer
+[badge-issues]: https://img.shields.io/github/issues/Cweili/mdrd.svg
+[github]: https://github.com/Cweili/mdrd
 
-[badge-build]: https://img.shields.io/github/actions/workflow/status/Cweili/md-viewer/test.yml?branch=master
-[workflows]: https://github.com/Cweili/md-viewer/actions/workflows/test.yml?query=branch%3Amaster
+[badge-build]: https://img.shields.io/github/actions/workflow/status/Cweili/mdrd/test.yml?branch=master
+[workflows]: https://github.com/Cweili/mdrd/actions/workflows/test.yml?query=branch%3Amaster
 
-[badge-coverage]: https://img.shields.io/coveralls/github/Cweili/md-viewer/master.svg
-[coveralls]: https://coveralls.io/github/Cweili/md-viewer?branch=master
+[badge-coverage]: https://img.shields.io/coveralls/github/Cweili/mdrd/master.svg
+[coveralls]: https://coveralls.io/github/Cweili/mdrd?branch=master

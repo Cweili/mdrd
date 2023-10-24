@@ -8,11 +8,11 @@ import {
 } from './utils'
 
 import type {
-  MarkdownOptions,
+  MdrdOptions,
 } from './types'
 
 let marked: Marked
-async function getMarked(options: MarkdownOptions) {
+async function getMarked(options: MdrdOptions) {
   if (!marked) {
     await loadScript(options.cdn!.libs!.marked!, options.cdn!.prefix!)
     // @ts-ignore
@@ -23,7 +23,7 @@ async function getMarked(options: MarkdownOptions) {
   return marked
 }
 
-let options: MarkdownOptions
+let options: MdrdOptions
 self.addEventListener('message', (event) => {
   if (options) {
     getMarked(options)
