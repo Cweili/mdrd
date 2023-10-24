@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { MdViewer } from './MdViewer'
+import MdViewer from './MdViewer'
 
 const sleep = (ms: number) => new Promise((resolve) => { setTimeout(resolve, ms) })
 
