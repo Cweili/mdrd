@@ -1,6 +1,6 @@
 {
   "name": "mdrd",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Render markdown with code highlighting, katex, mermaid",
   "keywords": [
     "markdown",
@@ -21,7 +21,7 @@
   },
   "author": "Cweili",
   "license": "MIT",
-  "homepage": "https://github.com/Cweili/mdrd",
+  "homepage": "https://cweili.github.io/mdrd",
   "bugs": {
     "url": "https://github.com/Cweili/mdrd/issues"
   },

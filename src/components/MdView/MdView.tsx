@@ -11,17 +11,17 @@ import markdown, {
   MdrdOptions,
 } from '../../libs'
 
-export interface MdViewerProps {
+export interface MdViewProps {
   /** Markdown */
   children?: string
   /** MdrdOptions */
   options?: MdrdOptions
 }
 
-export default function MdViewer({
+export default function MdView({
   children,
   options,
-}: MdViewerProps) {
+}: MdViewProps) {
   const [html, setHtml] = useState<string>()
   const render = useMemo(() => markdown(options), [JSON.stringify(options)])
 

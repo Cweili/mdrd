@@ -1,6 +1,6 @@
-import MdViewer, { MdViewerProps } from './MdView/MdView'
+import MdView, { MdViewProps } from './MdView/MdView'
 
 export {
-  MdViewer,
-  type MdViewerProps,
+  MdView,
+  type MdViewProps,
 }
