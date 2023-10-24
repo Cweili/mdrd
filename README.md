@@ -30,7 +30,7 @@ npm install md-viewer
 #### Markdown renderer
 
 ```js
-import { markdown } from 'md-viewer'
+import markdown from 'md-viewer'
 
 const markdownOptions = {
   katex: {},
