@@ -15,17 +15,20 @@
     "worker",
     "webworker"
   ],
-  "scripts": {
-    "build": "vite build",
-    "test": "test-storybook --coverage --coverageDirectory=coverage",
-    "coverage": "nyc report --reporter=lcov -t coverage --report-dir coverage",
-    "dev": "storybook dev --docs --disable-telemetry -p 6006",
-    "build:docs": "storybook build --docs --disable-telemetry -o dist/docs"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Cweili/mdrd.git"
   },
   "author": "Cweili",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "homepage": "https://github.com/Cweili/mdrd",
+  "bugs": {
+    "url": "https://github.com/Cweili/mdrd/issues"
+  },
+  "main": "dist/mdrd.js",
+  "module": "dist/mdrd.mjs",
+  "unpkg": "dist/mdrd.umd.js",
+  "jsdelivr": "dist/mdrd.umd.js",
   "files": [
     "dist/!(docs)"
   ],
@@ -33,6 +36,13 @@
     "**/*.css"
   ],
   "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "vite build",
+    "test": "test-storybook --coverage --coverageDirectory=coverage",
+    "coverage": "nyc report --reporter=lcov -t coverage --report-dir coverage",
+    "dev": "storybook dev --docs --disable-telemetry -p 6006",
+    "build:docs": "storybook build --docs --disable-telemetry -o dist/docs"
+  },
   "dependencies": {
     "async-throttle-cache": "^1.1.4",
     "clipboard-copy": "^4.0.1"

@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import dts from 'vite-plugin-dts'
-import { libInjectCss, scanEntries } from 'vite-plugin-lib-inject-css'
+import { libInjectCss } from 'vite-plugin-lib-inject-css'
 
 import autoprefixer from 'autoprefixer'
 
@@ -35,11 +35,9 @@ export default defineConfig(({ mode }) => ({
     target: 'es2015',
     sourcemap: true,
     lib: {
-      entry: {
-        ...scanEntries('src/components'),
-        markdown: 'src/libs',
-        index: 'src/index.ts',
-      },
+      formats: ['es', 'cjs', 'umd'],
+      name: pkg.name,
+      entry: 'src/index.ts',
     },
     rollupOptions: {
       external: Object.keys(pkg.dependencies).concat(Object.keys(pkg.peerDependencies)),
