@@ -1,6 +1,5 @@
 import React, {
   useState,
-  useMemo,
   useEffect,
 } from 'react'
 import clipboardCopy from 'clipboard-copy'
@@ -23,7 +22,7 @@ export default function MdView({
   options,
 }: MdViewProps) {
   const [html, setHtml] = useState<string>()
-  const render = useMemo(() => markdown(options), [JSON.stringify(options)])
+  const render = markdown(options)
 
   const onCopy = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const target = e.target as HTMLElement
