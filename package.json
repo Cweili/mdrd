@@ -83,7 +83,7 @@
     "sass": "^1.66.1",
     "storybook": "^7.4.0",
     "typescript": "^5.2.2",
-    "vite": "^4.4.9",
+    "vite": "^5.0.0",
     "vite-plugin-dts": "^3.5.3",
     "vite-plugin-istanbul": "^5.0.0",
     "vite-plugin-lib-inject-css": "^1.2.1"
