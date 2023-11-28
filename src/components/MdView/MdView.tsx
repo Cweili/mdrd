@@ -13,28 +13,32 @@ import markdown, {
 export interface MdViewProps {
   /** Markdown */
   children?: string
+  copy?: boolean
   /** MdrdOptions */
   options?: MdrdOptions
 }
 
 export default function MdView({
   children,
+  copy,
   options,
 }: MdViewProps) {
   const [html, setHtml] = useState<string>()
   const render = markdown(options)
 
   const onCopy = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const target = e.target as HTMLElement
-    const targetIsCode = target.tagName === 'PRE'
-    const targetIsDoc = target.className === style.copy
-    if (targetIsCode || targetIsDoc) {
-      clipboardCopy(targetIsDoc ? children as string : target.innerText)
-      const { classList } = targetIsDoc ? target.parentElement! : target
-      classList.add(style.copied)
-      setTimeout(() => {
-        classList.remove(style.copied)
-      }, 200)
+    if (copy) {
+      const target = e.target as HTMLElement
+      const targetIsCode = target.tagName === 'PRE'
+      const targetIsDoc = target.className === style.copyBtn
+      if (targetIsCode || targetIsDoc) {
+        clipboardCopy(targetIsDoc ? children as string : target.innerText)
+        const { classList } = targetIsDoc ? target.parentElement! : target
+        classList.add(style.copied)
+        setTimeout(() => {
+          classList.remove(style.copied)
+        }, 200)
+      }
     }
   }
 
@@ -48,14 +52,16 @@ export default function MdView({
 
   return html ? (
     <div
-      className={style.md}
+      className={`${style.md}${copy ? ` ${style.copy}` : ''}`}
     >
-      <div
-        aria-hidden="true"
-        role="button"
-        className={style.copy}
-        onClick={onCopy}
-      />
+      {copy && (
+        <div
+          aria-hidden='true'
+          role='button'
+          className={style.copyBtn}
+          onClick={onCopy}
+        />
+      )}
       <div
         dangerouslySetInnerHTML={{ __html: html }}
         onClick={onCopy}
