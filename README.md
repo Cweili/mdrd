@@ -59,7 +59,10 @@ import { MdView } from 'mdrd'
 function ReactComponent() {
   const mdrdOptions = {}
   return (
-    <MdView options={mdrdOptions}>
+    <MdView
+      options={mdrdOptions}
+      copy
+    >
       # hello world
     </MdView>
   )
