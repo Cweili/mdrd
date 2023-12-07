@@ -23,7 +23,7 @@ async function getMermaid(options: MdrdOptions) {
 
 export default function configMermaid(options: MdrdOptions) {
   return async function renderMermaid(text: string, html: string) {
-    const mermaids = text.match(regex)
+    const mermaids = text?.match(regex)
     let result = html
     if (mermaids) {
       const mermaid = await getMermaid(options)

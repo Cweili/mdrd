@@ -62,7 +62,7 @@ function inlineKatex(renderer: ReturnType<typeof createRenderer>) {
       }
     },
     tokenizer(src: string) {
-      const match = src.match(inlineRule)
+      const match = src?.match(inlineRule)
       if (match) {
         return {
           type: INLINE,
@@ -81,7 +81,7 @@ function blockKatex(renderer: ReturnType<typeof createRenderer>) {
     name: BLOCK,
     level: 'block',
     tokenizer(src: string) {
-      const match = src.match(blockRule)
+      const match = src?.match(blockRule)
       if (match) {
         return {
           type: BLOCK,
