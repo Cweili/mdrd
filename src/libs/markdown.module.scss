@@ -227,7 +227,7 @@
     line-height: 10px;
     color: #1F2328;
     vertical-align: middle;
-    background-color: #f6f8fa;
+    background-color: rgba(#64a8f9, .1);
     border: solid 1px rgba(175,184,193,0.2);
     border-bottom-color: rgba(175,184,193,0.2);
     border-radius: 6px;
@@ -460,7 +460,7 @@
   }
 
   table tr:nth-child(2n) {
-    background-color: #f6f8fa;
+    background-color: rgba(#64a8f9, .1);
   }
 
   table img {
@@ -517,7 +517,7 @@
     font-size: 85%;
     line-height: 1.45;
     color: #1F2328;
-    background-color: #f6f8fa;
+    background-color: rgba(#64a8f9, .1);
     border-radius: 6px;
   }
 
