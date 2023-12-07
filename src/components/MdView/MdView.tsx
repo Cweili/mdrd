@@ -43,11 +43,9 @@ export default function MdView({
   }
 
   useEffect(() => {
-    if (children) {
-      render(children)
-        .then((newHtml: string) => render.mermaid(children, newHtml))
-        .then(setHtml)
-    }
+    render(children!)
+      .then((newHtml: string) => render.mermaid(children!, newHtml))
+      .then(setHtml)
   }, [children])
 
   return html ? (

@@ -15,7 +15,7 @@ const context: {
 async function getMermaid(options: MdrdOptions) {
   let { mermaid } = context
   if (!mermaid) {
-    await loadScript(options.cdn!.libs!.mermaid, options.cdn!.prefix, context)
+    await loadScript(options.cdn!.libs!.mermaid!, options.cdn!.prefix!, context)
     mermaid = context.mermaid
   }
   return mermaid!

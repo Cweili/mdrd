@@ -21,7 +21,10 @@ const defaultOptions = {
 
 const workers: Record<string, {
   w: MdWorker
-  r: ((html: string) => void)[]
+  q: {
+    t: string,
+    r: (html: string) => void,
+  }[],
 }> = {}
 export default function markdown(options: MdrdOptions = defaultOptions) {
   const opts = {
@@ -43,20 +46,33 @@ export default function markdown(options: MdrdOptions = defaultOptions) {
   if (!worker) {
     worker = {
       w: new MdWorker(),
-      r: [],
+      q: [],
     }
     workers[workerKey] = worker
     worker.w.postMessage(opts)
     worker.w.addEventListener('message', (event: MessageEvent) => {
-      worker.r.shift()?.(event.data)
+      worker.q.shift()?.r(event.data)
     })
+  }
+  function send(text: string) {
+    setTimeout(() => {
+      worker.w.postMessage(text)
+    }, 0)
   }
   const renderMarkdown = (text: string) => new Promise<string>((res) => {
     if (text) {
-      worker.r.push(res)
-      setTimeout(() => {
-        worker.w.postMessage(text)
-      }, 0)
+      if (!worker.q[0]) {
+        send(text)
+      }
+      worker.q.push({
+        t: text,
+        r(html: string) {
+          if (worker.q[0]) {
+            send(worker.q[0].t)
+          }
+          res(html)
+        },
+      })
     } else {
       res(text)
     }

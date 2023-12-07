@@ -104,7 +104,7 @@ export default function katex(options: MdrdOptions) {
     async: true,
     walkTokens(token: Token) {
       if ([INLINE, BLOCK].indexOf(token.type) >= 0 && !self.katex) {
-        return loadScript(options.cdn!.libs!.katex, options.cdn!.prefix)
+        return loadScript(options.cdn!.libs!.katex!, options.cdn!.prefix!)
       }
     },
   }
