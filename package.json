@@ -45,7 +45,9 @@
     "./package.json": "./package.json"
   },
   "files": [
-    "dist/!(docs)"
+    "dist/**/*",
+    "LICENSE",
+    "README.md"
   ],
   "sideEffects": [
     "**/*.css"
