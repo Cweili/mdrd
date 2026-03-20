@@ -35,6 +35,9 @@ import mdrd from 'mdrd'
 const mdrdOptions = {
   katex: {},
   marked: {},
+  sanitize: {
+    enabled: true,
+  },
   cdn: {
     prefix: 'https://cdn.jsdelivr.net/npm/',
     libs: {
@@ -42,6 +45,7 @@ const mdrdOptions = {
       prismjs: 'prismjs@1.29.0/components/prism-core.min.js',
       katex: 'katex@0.16.9/dist/katex.min.js',
       mermaid: 'mermaid@10.5.1/dist/mermaid.min.js',
+      xss: 'xss@1.0.15/dist/xss.min.js',
     },
   },
 }
@@ -73,6 +77,7 @@ function ReactComponent() {
 
 * `katex`: [Katex options](https://katex.org/docs/options)
 * `marked`: [Marked options](https://marked.js.org/using_advanced#options)
+* `sanitize`: worker-side sanitize options powered by `xss`
 * `cdn`: CDN options
 
 Default options:
@@ -82,6 +87,10 @@ const libsMinVersion = process .env .NODE_ENV === 'development' ? '' : '.min'
 const defaultOptions = {
   katex: {},
   marked: {},
+  sanitize: {
+    enabled: false,
+    xss: {},
+  },
   cdn: {
     prefix: 'https://cdn.jsdelivr.net/npm/',
     libs: {
@@ -89,10 +98,13 @@ const defaultOptions = {
       prismjs: `prismjs@1.29.0/components/prism-core${libsMinVersion}.js`,
       katex: `katex@0.16.9/dist/katex${libsMinVersion}.js`,
       mermaid: `mermaid@10.5.1/dist/mermaid${libsMinVersion}.js`,
+      xss: `xss@1.0.15/dist/xss${libsMinVersion}.js`,
     },
   },
 }
 ```
+
+When `sanitize.enabled` is `true`, the worker sanitizes markdown HTML with `xss` before posting it back to the main thread. Mermaid output is unchanged in this first phase and is not sanitized again after it is appended.
 
 [doc]: https://cweili.github.io/mdrd/
 

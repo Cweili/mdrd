@@ -8,6 +8,10 @@ const libsMinVersion = process.env.NODE_ENV === 'development' ? '' : '.min'
 const defaultOptions = {
   katex: {},
   marked: {},
+  sanitize: {
+    enabled: false,
+    xss: {},
+  },
   cdn: {
     prefix: 'https://cdn.jsdelivr.net/npm/',
     libs: {
@@ -15,6 +19,7 @@ const defaultOptions = {
       prismjs: `prismjs@1.29.0/components/prism-core${libsMinVersion}.js`,
       katex: `katex@0.16.9/dist/katex${libsMinVersion}.js`,
       mermaid: `mermaid@10.5.1/dist/mermaid${libsMinVersion}.js`,
+      xss: `xss@1.0.15/dist/xss${libsMinVersion}.js`,
     },
   },
 }
@@ -30,6 +35,18 @@ export default function markdown(options: MdrdOptions = defaultOptions) {
   const opts = {
     ...defaultOptions,
     ...options,
+    ...(options.sanitize && {
+      sanitize: {
+        ...defaultOptions.sanitize,
+        ...options.sanitize,
+        ...(options.sanitize.xss && {
+          xss: {
+            ...defaultOptions.sanitize.xss,
+            ...options.sanitize.xss,
+          },
+        }),
+      },
+    }),
     ...(options.cdn && {
       cdn: {
         ...defaultOptions.cdn,
