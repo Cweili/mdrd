@@ -54,7 +54,7 @@ const htmlWithMermaid = await renderMarkdown.mermaid(content, html)
 #### React component
 
 ```jsx
-import { MdView } from 'mdrd'
+import { MdView } from 'mdrd/react'
 
 function ReactComponent() {
   const mdrdOptions = {}

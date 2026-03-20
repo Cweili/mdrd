@@ -29,6 +29,21 @@
   "module": "dist/mdrd.mjs",
   "unpkg": "dist/mdrd.umd.js",
   "jsdelivr": "dist/mdrd.umd.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/mdrd.mjs",
+      "require": "./dist/mdrd.js",
+      "default": "./dist/mdrd.mjs"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "import": "./dist/react.mjs",
+      "require": "./dist/react.js",
+      "default": "./dist/react.mjs"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
     "dist/!(docs)"
   ],
@@ -37,7 +52,7 @@
   ],
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "vite build",
+    "build": "vite build && vite build --config vite.react.config.ts",
     "test": "test-storybook --coverage --coverageDirectory=coverage",
     "coverage": "nyc report --reporter=lcov -t coverage --report-dir coverage",
     "dev": "storybook dev --docs --disable-telemetry -p 6006",
@@ -91,5 +106,13 @@
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
   }
 }

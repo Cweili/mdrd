@@ -1,24 +1,14 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import dts from 'vite-plugin-dts'
 import { libInjectCss } from 'vite-plugin-lib-inject-css'
 
 import autoprefixer from 'autoprefixer'
 
 import pkg from './package.json' assert { type: 'json' }
 
-// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   plugins: [
     react({ jsxRuntime: 'classic' }),
-    dts({
-      entryRoot: 'src',
-      exclude: [
-        '**/*.stories.ts?',
-        '**/__tests__/**',
-        '**/*.test-d.ts',
-      ],
-    }),
     libInjectCss(),
   ],
   css: {
@@ -32,12 +22,14 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
+    emptyOutDir: false,
     target: 'es2015',
     sourcemap: true,
     lib: {
-      formats: ['es', 'cjs', 'umd'],
-      name: pkg.name,
-      entry: 'src/index.ts',
+      formats: ['es', 'cjs'],
+      name: 'mdrdReact',
+      entry: 'src/react.ts',
+      fileName: (format) => format === 'es' ? 'react.mjs' : 'react.js',
     },
     rollupOptions: {
       external: Object.keys(pkg.dependencies).concat(Object.keys(pkg.peerDependencies)),
