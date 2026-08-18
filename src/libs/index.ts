@@ -70,10 +70,20 @@ export default function markdown(options: MdrdOptions = defaultOptions) {
     worker.w.addEventListener('message', (event: MessageEvent) => {
       worker.q.shift()?.r(event.data)
     })
+    // If the worker dies unexpectedly (e.g. an uncaught error), flush the queue so
+    // callers are never left with a forever-pending promise.
+    worker.w.addEventListener('error', () => {
+      const pending = worker.q.splice(0)
+      pending.forEach((item) => item.r(''))
+    })
   }
   function send(text: string) {
     setTimeout(() => {
-      worker.w.postMessage(text)
+      try {
+        worker.w.postMessage(text)
+      } catch {
+        // Worker already terminated; nothing left to send.
+      }
     }, 0)
   }
   const renderMarkdown = (text: string) => new Promise<string>((res) => {
