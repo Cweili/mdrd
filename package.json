@@ -1,6 +1,6 @@
 {
   "name": "mdrd",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Render markdown with code highlighting, katex, mermaid",
   "keywords": [
     "markdown",
