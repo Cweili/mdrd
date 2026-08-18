@@ -9,6 +9,7 @@ import {
 } from './xss'
 
 import {
+  escapeHtml,
   loadScript,
 } from './utils'
 
@@ -17,9 +18,11 @@ import type {
 } from './types'
 
 let marked: Marked
+let options: MdrdOptions
+let ready: Promise<Marked> | undefined
 let xss: XssApi | undefined
 let filter: XssFilter | undefined
-async function getMarked(options: MdrdOptions) {
+async function getMarked() {
   if (!marked) {
     await loadScript(options.cdn!.libs!.marked!, options.cdn!.prefix!)
     // @ts-ignore
@@ -30,7 +33,7 @@ async function getMarked(options: MdrdOptions) {
   return marked
 }
 
-async function getFilter(options: MdrdOptions) {
+async function getFilter() {
   if (!options.sanitize?.enabled) {
     return
   }
@@ -45,21 +48,33 @@ async function getFilter(options: MdrdOptions) {
 }
 
 async function render(text: string) {
-  await getMarked(options)
+  await getMarked()
   const html = await marked.parse(text)
-  const current = await getFilter(options)
+  const current = await getFilter()
   if (!current) {
     return html
   }
   return current.process(html)
 }
 
-let options: MdrdOptions
 self.addEventListener('message', (event) => {
-  if (options) {
-    render(event.data)
-      .then((result) => self.postMessage(result))
-  } else {
-    getMarked(options = event.data)
+  if (!ready) {
+    // First message carries the options.
+    options = event.data
+    ready = getMarked()
+    // Avoid an unhandled rejection when marked cannot be initialised.
+    ready.catch(() => {})
+    return
   }
+
+  ready
+    .then(() => render(event.data))
+    .then((result) => self.postMessage(result))
+    .catch((error) => {
+      // Never leave the caller hanging: reply with a graceful fallback instead of
+      // dying with an unhandled rejection (which would leave the consumer's
+      // promise pending forever).
+      console.error('[mdrd] render failed:', error)
+      self.postMessage(`<p>mdrd render failed:</p><pre>${escapeHtml(String(error))}</pre>`)
+    })
 })
